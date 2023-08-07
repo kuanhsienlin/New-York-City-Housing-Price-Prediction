@@ -1,0 +1,73 @@
+The goal of this project is to explore the relationship between prices and regional characteristics in the New York City real estate market. I will analyze the relationship between housing prices and factors such as location, nearby facilities, accessibility of transportation, and census tract data of the population. This analysis will help potential real estate buyers understand which factors are important to home prices and help with investment decisions.
+
+(A). In this project, I collected three data sets from the below sources for analysis:
+
+source1: Web scraping from below Real Estate website
+https://www.trulia.com/NY/New_York/{zip_code_name}/
+
+source2: Overpass API
+https://wiki.openstreetmap.org/wiki/Tag:railway%3Dsubway_entrance
+
+source3: Web scraping census data from below Unitedstateszipcode websites
+(1). New York State Zipcode
+https://www.unitedstateszipcodes.org/ny/#zips-list
+(2). Census data for New York City Zipcode
+https://www.unitedstateszipcodes.org/{zipcode}/
+
+(B). Folder file instruction:
+
+Full datasets in Three Full datasets files folder:
+Subfolder source3_Web_Scraping:
+(1) source3_web_scraping_full.csv (census data from valid zipcode HTML: We use it in the combined data step.)
+(2) new_york_state_zipcode.csv (initial New York State zip code data: We do not use it in the combined data step.)
+Subfolder source1_Web_Scraping:
+(1) source1_web_scraping_full.csv (house data: We use it in the combined data step.)
+Subfolder source2_Web_Scraping:
+(1) source2_api_full (facilities count around each house location: We use it in the combined data step.)
+
+Sample datasets in Three sample datasets folder:
+(1) source3_dataset_sample.csv (census data)
+(2) source1_dataset_sample.csv (house data)
+(3) source2_dataset_sample.csv (facilities count data)
+
+
+(C). Below are the steps for executing the code I used to get the three data sets. A more detailed graphic explanation is in another Word file called Run Code Instruction.
+
+Important note: 
+(I). The order in which the folders are executed is important because executing code from one dataset requires the output file of another dataset as an input parameter. Folders are executed in order of source3, source1, and source2.
+(II). I suggest using the mobile hotspot network to run the program. 
+(III). If we have requested the https://www.unitedstateszipcodes.org/ny/#zips-list website too many times, it will start anti web scraping mechanism, so we switch the network to a mobile hotspot(highly suggest) or change IP and rerun the main.py.
+(IV). Before executing the below steps, we need to install the below libraries. 
+pip install pandas
+pip install beautifulsoup4
+pip install fake_useragent
+pip install overpy
+pip install chardet
+
+Steps:
+First, execute the source3 (about 1.5 minutes for sample data)
+1. Download the HW4_KuanHsien_Lin zip file from the blackboard and unzip the HW4_KuanHsien_Lin.zip file.
+2. Open HW4_Python_code folder in the HW4_KuanHsien_Lin folder.
+3. In HW4_Python_code folder, there are three folders, such as source1, source2, and source3. Open those folders, and you will see main.py in each folder. We just get the data set by executing main.py in each folder.
+4. Open the command line window and use the cd command (Ex. cd '/Users/KHLin/Desktop/USC/USCSD/DSCI510/final project/HW4/HW4_Python_code/source3') to switch to the directory source3, containing the main.py file.
+5. If the current execute path is in the source3 folder, please run the main.py script in the source3 folder. Enter the following command on the command line: python main.py output_file_name.csv --sample. The output_file_name is the name of the source3 data set. You can name the output file whatever you want. If you do not type the output_file_name, the default output file name is source3_dataset.csv.
+6. After running successfully, the source3 sample dataset (Ex. output_file_name.csv) is automatically generated in the source3 folder. We web scraped all the zip codes in the state of New York and then selected all the zip codes in the five boroughs of New York City for source 1 house data web scraping. We could check the initial New York State zip code data (new_york_state_zipcode.csv) that include 2209 zip codes in new_york_state_zipcode folder. We also put new_york_state_zipcode.csv file in the "source3_Web_Scraping" folder of the "Three Full datasets files" folder.
+
+Second, execute the source1 (about 1.5 minutes for sample data)
+7. Use the cd.. command to return to the HW4_Python_code folder.
+8. Use the cd source1 command to change the current path to the source1 folder
+9. If the current execute path is in the source1 folder, please run the main.py script in the source1 folder. Enter the following command on the command line: python main.py output_file_name.csv --sample. The output_file_name is the name of the source1 data set. You can name the output file whatever you want. If you do not type the output_file_name, the default output file name is source1_dataset.csv.
+10. After running successfully, the source1 sample dataset (Ex. output_file_name.csv) is automatically generated in the source1 folder.
+
+Finally, execute the source2 (about 45 seconds for sample data)
+11. Use the cd.. command to return to the HW4_Python_code folder.
+12. Use the cd source2 command to change the current path to the source2 folder
+13. If the current execute path is in the source2 folder, please run the main.py script in the source2 folder. Enter the following command on the command line: python main.py output_file_name.csv input_file_name.csv --sample. The output_file_name is the name of the source2 data set. We use the source2 API and source1 data set to get the source2 dataset, so we need to give the output file name and input file name in the command line. The input file name is entered after the output file name. If the input and output file names do not exist, the main.py cannot execute successfully. Another important thing is that our input file name needs to be the same as our source1 dataset output file name.
+14. After running successfully, the source2 sample dataset (Ex. output_file_name.csv) is automatically generated in the source2 folder.
+
+
+
+
+
+
+
